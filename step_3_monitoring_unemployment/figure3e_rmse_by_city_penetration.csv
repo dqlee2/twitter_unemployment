@@ -1,0 +1,46 @@
+"metro_area_name","variable","variable2","rel_to_AR","SE","penetration"
+"Abilene","Conversational BERT (Weighted/)","JoblessBERT (Trained)",103.178295178034,2.92860873918858,1.99316173768554
+"Amarillo","Conversational BERT (Weighted/)","JoblessBERT (Trained)",98.9698765961377,3.50083334156977,1.67434386182047
+"Atlanta","Conversational BERT (Weighted/)","JoblessBERT (Holdout)",89.7918138335177,2.42769676812805,4.04857315297901
+"Austin","Conversational BERT (Weighted/)","JoblessBERT (Trained)",77.4594915051905,1.59196982773208,10.642478428111
+"Beaumont","Conversational BERT (Weighted/)","JoblessBERT (Trained)",77.0390874674227,1.40742002530593,2.1168060519832
+"Bloomington","Conversational BERT (Weighted/)","JoblessBERT (Trained)",75.7109726622661,1.29269713683648,7.52389419871082
+"Boise","Conversational BERT (Weighted/)","JoblessBERT (Trained)",82.0833426614507,1.3701659769444,4.71815181238121
+"Boston","Conversational BERT (Weighted/)","JoblessBERT (Trained)",63.487954753323,1.6116112461635,18.857158926753
+"Brownsville","Conversational BERT (Weighted/)","JoblessBERT (Holdout)",84.0234757404778,1.52479683787718,1.32017973724942
+"Cedar Rapids","Conversational BERT (Weighted/)","JoblessBERT (Trained)",77.2098097708262,1.28489859353406,3.05323003419908
+"Chicago","Conversational BERT (Weighted/)","JoblessBERT (Trained)",71.5790505709301,1.64056265242121,10.0106887245335
+"Cleveland","Conversational BERT (Weighted/)","JoblessBERT (Trained)",68.3428450694753,1.95433852199561,14.592815431847
+"College Station","Conversational BERT (Weighted/)","JoblessBERT (Trained)",82.3337905406176,2.15489716188106,6.25814159952872
+"Columbus","Conversational BERT (Weighted/)","JoblessBERT (Trained)",70.7122239474509,1.51799400983542,12.1955324963365
+"Corpus Christi","Conversational BERT (Weighted/)","JoblessBERT (Trained)",84.9272207699445,1.30734337108668,2.55613267351029
+"Dallas","Conversational BERT (Weighted/)","JoblessBERT (Trained)",69.7334474751611,1.53533529640878,15.7396553138539
+"Davenport","Conversational BERT (Weighted/)","JoblessBERT (Trained)",80.5964129508567,1.71301374793391,3.60765964139667
+"Des Moines","Conversational BERT (Weighted/)","JoblessBERT (Trained)",73.9915603287572,1.73363401895716,5.52948044366608
+"Dubuque","Conversational BERT (Weighted/)","JoblessBERT (Trained)",83.7122771595485,2.25772056801839,2.39236454440329
+"Fort Wayne","Conversational BERT (Weighted/)","JoblessBERT (Trained)",77.8748017502206,1.2468718033429,2.76226346461347
+"Hartford","Conversational BERT (Weighted/)","JoblessBERT (Trained)",81.4652571971248,1.29996144379315,4.98479565023385
+"Honolulu","Conversational BERT (Weighted/)","JoblessBERT (Trained)",72.8206003124557,1.89529985986721,3.74822632391742
+"Houston","Conversational BERT (Weighted/)","JoblessBERT (Trained)",74.255461760828,1.4900813139349,9.51719085911716
+"Idaho Falls","Conversational BERT (Weighted/)","JoblessBERT (Trained)",97.9028717527939,1.97076609287969,1.3970207056384
+"Indianapolis","Conversational BERT (Weighted/)","JoblessBERT (Trained)",73.6334337576399,1.63255694475659,5.59729446263833
+"Kansas City","Conversational BERT (Weighted/)","JoblessBERT (Holdout)",76.6013994527603,1.70781075229706,10.7506137161373
+"Killeen","Conversational BERT (Weighted/)","JoblessBERT (Holdout)",82.3355657522039,1.46425858993554,2.3327870029972
+"Lafayette","Conversational BERT (Weighted/)","JoblessBERT (Holdout)",74.996310827799,2.24197843638235,8.17146905220844
+"Las Vegas","Conversational BERT (Weighted/)","JoblessBERT (Trained)",78.4205189983712,1.71120652737453,14.3456159884379
+"Longview","Conversational BERT (Weighted/)","JoblessBERT (Holdout)",82.0162299207206,2.52664150438258,1.58623223909848
+"Lubbock","Conversational BERT (Weighted/)","JoblessBERT (Holdout)",85.5872635607934,1.89776354307477,3.24509929731643
+"McAllen","Conversational BERT (Weighted/)","JoblessBERT (Trained)",70.0611116565855,1.90834469840442,3.96286789268258
+"Midland","Conversational BERT (Weighted/)","JoblessBERT (Trained)",83.3507248398593,1.68562239221951,2.08264163472277
+"Nuevo Laredo","Conversational BERT (Weighted/)","JoblessBERT (Holdout)",110.981714535535,3.37515903856359,1.21663558139899
+"Reno","Conversational BERT (Weighted/)","JoblessBERT (Trained)",84.7436898254858,1.77789166507015,4.18422317876031
+"San Angelo","Conversational BERT (Weighted/)","JoblessBERT (Trained)",106.766501779361,2.78958555006316,2.24215246636771
+"San Antonio","Conversational BERT (Weighted/)","JoblessBERT (Holdout)",83.8330325540349,1.53293544754388,4.84046272676379
+"Seattle","Conversational BERT (Weighted/)","JoblessBERT (Trained)",70.6463802384251,1.56215792001691,17.3638907055187
+"Sioux City","Conversational BERT (Weighted/)","JoblessBERT (Trained)",97.3855529710787,1.2597003262553,1.79526934869027
+"South Bend","Conversational BERT (Weighted/)","JoblessBERT (Trained)",64.8429984105887,1.80116456112052,5.00309370045245
+"Springfield","Conversational BERT (Weighted/)","JoblessBERT (Trained)",61.5384912738688,2.23894607250527,20.5068967281035
+"Waco","Conversational BERT (Weighted/)","JoblessBERT (Trained)",84.2557866015847,1.42294832622513,3.45955937453165
+"Washington D.C.","Conversational BERT (Weighted/)","JoblessBERT (Trained)",69.5878119389729,1.63718088171348,25.8389215512816
+"Waterloo","Conversational BERT (Weighted/)","JoblessBERT (Trained)",81.2905033495044,1.28838905725486,3.76931075460487
+"Wichita Falls","Conversational BERT (Weighted/)","JoblessBERT (Holdout)",91.6447395130386,1.98268524773918,1.82522772586888
