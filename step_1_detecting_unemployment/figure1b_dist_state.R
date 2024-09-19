@@ -98,6 +98,8 @@ ttest <- function(reg, coefnum, val){
   tstat <- (co[coefnum,1]-val)/co[coefnum,2]
   2 * pt(abs(tstat), reg$df.residual, lower.tail = FALSE)
 }
+
+# Test whether regression slope different from one
 fit_rule
 ttest(fit_rule,2,1)
 fit_bert

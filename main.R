@@ -14,6 +14,7 @@ if (any(installed_packages==FALSE)) {
 }
 # Packages loading
 invisible(lapply(packages, library, character.only = TRUE))
+sessionInfo()
 
 #####################################################
 

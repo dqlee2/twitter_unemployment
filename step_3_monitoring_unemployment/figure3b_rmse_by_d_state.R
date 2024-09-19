@@ -18,7 +18,7 @@ plot = ggplot(
     x = "Time After Measurement Week (d)", 
     title = '') +
   scale_y_continuous(expand=c(0,3),limits=c(30,110),breaks=seq(30,110,10)) +
-  scale_x_continuous(breaks=-9:5,limits=c(-9,5),expand=c(0,0.1)) +
+  scale_x_continuous(breaks=-10:5,limits=c(-10,5),expand=c(0,0.1)) +
   scale_linetype_manual(values=c('dotted','solid','longdash')) + 
   scale_color_manual(values=c('darkolivegreen3','#f98400','#3498db')) +
   scale_fill_manual(values=c('darkolivegreen3','#f98400','#3498db')) +
@@ -44,4 +44,6 @@ ggsave(
   width=18,height=12,units="cm",
   dpi=1200
   )
+
+
 

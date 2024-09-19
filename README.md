@@ -24,15 +24,17 @@ Publicly available data include the following:
 
 3. Time series data on the rule-based and JoblessBERT unemployment index: `time_series.csv`. 
 
-4. Crosswalk tables across different geographic units: `locations_US.csv` (maps users' inferred profile locations to U.S. states and cities), `locations_US_num_state.csv`, and `srd_code_to_state.csv` (state name and 2-character state codes).
+4. Precision-recall curve calculated from a tweet level evaluation sample: `figure1a_pr_eval.csv'.
+
+5. Crosswalk tables across different geographic units: `locations_US.csv` (maps users' inferred profile locations to U.S. states and cities), `locations_US_num_state.csv`, and `srd_code_to_state.csv` (state name and 2-character state codes).
 
 ### Restricted Data
 
 The "restricted" subfolder contains templates for the restricted-access data, with its contents left blank. Researchers interested in reproducing the results involving restricted data will need to obtain the data independently and fill in the missing observations in each file. The restricted data include the following:
 
-1. Unemployment Tweets: `unemployed_tweets_regex.csv` (Tweets classified as unemployment disclosures using the rule-based model), `unemployed_tweets_bert.csv` (Tweets classified as unemployment disclosures using the JoblessBERT model). We provide the user ID and tweet ID that a researcher can use to retrieve the underlying tweets from the Twitter API.
+1. Unemployment Tweets: `unemployed_tweets_regex.csv` (Tweets classified as unemployment disclosures using the rule-based model), `unemployed_tweets_bert.csv` (Tweets classified as unemployment disclosures using the JoblessBERT model). 
 
-2. User profile information: `latest_profiles.csv` and `latest_profiles_user_location.csv` (profile location, indicator of whether a user has a profile picture, number of friends, number of statuses posted by each user), `demo_inf_final_20240106.csv` (users' inferred age brackets and gender (binary)). We provide the user ID that a researcher can use to retrieve the underlying profile information from the Twitter API.
+2. User profile information: `latest_profiles.csv` and `latest_profiles_user_location.csv` (profile location, indicator of whether a user has a profile picture, number of friends, number of statuses posted by each user), `demo_inf_final_20240106.csv` (users' inferred age brackets and gender (binary)). 
 
 3. Bloomberg consensus forecasts: `ui_consensus_forecast.csv` (Downloaded from the Bloomberg Terminal).
 
@@ -44,40 +46,40 @@ JoblessBERT, a large language model fine-tuned for detecting unemployment disclo
 
 This subfolder contains the following code and data files:
 
-1. dist_unemp.R - Code used to construct distributions of unemployed users relative to the population by state, age, and gender.
+1. `dist_unemp.R` - Code used to construct distributions of unemployed users relative to the population by state, age, and gender.
 
-2. figure1a_pr_eval.R - Code used to plot the precision-recall curve to evaluate model performance.
+2. `figure1a_pr_eval.R` - Code used to plot the precision-recall curve to evaluate model performance.
 
-3. figure1b_dist_state.R - Code used to plot the distribution of unemployed users relative to the population by state.
+3. `figure1b_dist_state.R` - Code used to plot the distribution of unemployed users relative to the population by state.
 
-4. figure1c_dist_age.R - Code used to plot the distribution of unemployed users relative to the population by age.
+4. `figure1c_dist_age.R` - Code used to plot the distribution of unemployed users relative to the population by age.
 
-5. figure1d_dist_gender.R - Code used to plot the distribution of unemployed users relative to the population by gender.
+5. `figure1d_dist_gender.R` - Code used to plot the distribution of unemployed users relative to the population by gender.
 
 ## Step 2: Constructing the Unemployment Index
 
 In this section, we construct the unemployment index, which is defined as the post-stratified percentage of users who disclosed their employment status using either the rule-based or JoblessBERT model.
 
-1. clean_main_sample.R - Code used to construct unemployment indices at national, state, and city levels. 
+1. `clean_main_sample.R` - Code used to construct unemployment indices at national, state, and city levels. 
 
-2. figure2a_time_series.R - Code used to plot the time series of actual UI claims and unemployment indices.
+2. `figure2a_time_series.R` - Code used to plot the time series of actual UI claims and unemployment indices.
 
 ## Step 3: Monitoring Unemployment
 
 In this section, we use the unemployment indices to investigate whether self-disclosures of unemployment on Twitter can help monitor UI claims.
 
-1. predict.R - Code used to construct predictions of national, state, and city-level UI claims.
+1. `predict.R` - Code used to construct predictions of national, state, and city-level UI claims.
 
-2. rmse.R - Code used to calculate the RMSE of national, state, and city-level predictions of UI claims.
+2. `rmse.R` - Code used to calculate the RMSE of national, state, and city-level predictions of UI claims.
 
 3. Code to visualize predictive performance:
 
-    - figure2c_rmse_by_d_national.R - Code used to plot RMSE by forecast horizon at the national level.
-    - figure3a_rmse_by_state.R - Code used to plot RMSE across states.
-    - figure3b_rmse_by_d_state.R - Code used to plot RMSE by forecast horizon at the state level.
-    - figure3c_rmse_by_d_city.R - Code used to plot RMSE by forecast horizon at the city level.
-    - figure3d_rmse_by_city_change_ui.R - Code used to plot RMSE for cities sorted by their average change in UI claims.
-    - figure3e_rmse_by_city_penetration.R - Code used to plot RMSE for cities sorted by their Twitter penetration rate.
+    - `figure2c_rmse_by_d_national.R` - Code used to plot RMSE by forecast horizon at the national level.
+    - `figure3a_rmse_by_state.R` - Code used to plot RMSE across states.
+    - `figure3b_rmse_by_d_state.R` - Code used to plot RMSE by forecast horizon at the state level.
+    - `figure3c_rmse_by_d_city.R` - Code used to plot RMSE by forecast horizon at the city level.
+    - `figure3d_rmse_by_city_change_ui.R` - Code used to plot RMSE for cities sorted by their average change in UI claims.
+    - `figure3e_rmse_by_city_penetration.R` - Code used to plot RMSE for cities sorted by their Twitter penetration rate.
 
 ## Instructions for Replication
 
@@ -85,7 +87,8 @@ To reproduce the results in the paper:
 
 1. Obtain the restricted data and place them in `./preprocessing/data/restricted/`.
 2. Run `main.m`, which calls the other supporting code files in the subfolders of this repository.
+3. The results are either figures, which are saved as .pdf files in the same folder as the underlying code, or numbers cited in the main text, which can be copied from the output printed on the R console. 
 
 ## Software Requirements
 
-The code in this repository has been written and tested using R 4.3.2. The following R packages have been used in the analysis: `tidyverse`, `zoo`, `data.table`, `plm`, `readxl`, `forecast`, `glmnet`, `speedglm`, `ggrepel`, `ggsignif`.
+The code in this repository has been written and tested using R 4.3.2. 

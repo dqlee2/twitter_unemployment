@@ -3,13 +3,10 @@
 
 dt = as.data.frame(fread('figure2c_rmse_by_d_national.csv'))
 
-dt[['ub']] = dt[['value']] + 2.54*dt[['SE0']]
-dt[['lb']] = dt[['value']] - 2.54*dt[['SE0']]
 dt[dt$variable=='Conversational BERT','variable'] = 'JoblessBERT'
 dt$variable = factor(
   as.character(dt$variable),
   levels=c('Consensus','Rule-Based','JoblessBERT'))
-dt[dt$h==5,'h'] = 4+8.5/24
 
 plot = ggplot(
   data = dt,
@@ -28,7 +25,7 @@ plot = ggplot(
     x = "Time After Measurement Week", 
     title = '') +
   scale_y_continuous(expand=c(0,0),limits=c(0,75),breaks=seq(0,70,10)) +
-  scale_x_continuous(breaks=-9:5,expand=c(0,0.1)) +
+  scale_x_continuous(breaks=-10:5,limits=c(-10,5),expand=c(0,0.1)) +
   scale_linetype_manual(values=c('dotted','longdash','solid')) + 
   scale_color_manual(values=c(
     '#9b59b6','#f98400','#3498db'
@@ -58,4 +55,21 @@ ggsave(
   width=18,height=12,units="cm",
   dpi=1200
 )
+
+## Numbers cited in main text
+
+# consensus model's RMSE on day -10
+print(dt[dt$variable=='Consensus' & dt$h<=-9,'value']/100)
+
+# consensus model's RMSE on day -3
+print(dt[dt$variable=='Consensus' & dt$h==-3,'value']/100)
+
+# consensus model's RMSE on day -2
+print(dt[dt$variable=='Consensus' & dt$h==-2,'value']/100)
+
+# Rule-based RMSE relative to baseline RMSE on an average two-week period before data release of actual UI claims
+print(1-mean(dt[dt$variable=='Rule-Based','value']/dt[dt$variable=='Consensus','value']))
+
+# JoblessBERT RMSE relative to baseline RMSE on an average two-week period before data release of actual UI claims
+print(1-mean(dt[dt$variable=='JoblessBERT','value']/dt[dt$variable=='Consensus','value']))
 

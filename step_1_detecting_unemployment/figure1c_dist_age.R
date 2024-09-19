@@ -23,6 +23,7 @@ bert_kl_label = paste0('JoblessBERT')
 uitw2$variable = as.character(uitw2$variable)
 uitw2[uitw2$variable=='Rule-Based','variable'] = regex_kl_label
 uitw2[uitw2$variable=='JoblessBERT','variable'] = bert_kl_label
+uitw2$Age = factor(uitw2$Age,levels=c('lt20','2030','3040','gt40'))
 uitw2$variable = factor(
   uitw2$variable,
   levels=c('Actual',regex_kl_label,bert_kl_label))
@@ -57,13 +58,41 @@ ggsave(
   dpi=1200
 )
 
-# Prop. test cited in main text 
+# Test cited in main text 
+# JoblessBERT closer to distribution of unemployment across age brackets in general population
 
-pop = 164704 #  Civilian Labor Force Level (CLF16OV)	Dec 2019
-prop.test(
-  x = pop*c(
-    as.numeric(uitw0[uitw0$Age=='lt20' & uitw0$variable=='JoblessBERT','value']),
-    as.numeric(uitw0[uitw0$Age=='lt20' & uitw0$variable=='Rule-Based','value'])),
-  n = c(pop,pop),
-  alternative='less')$p.value
+mu_actual = uitw2[uitw2$Age=='lt20' & uitw2$variable=='Actual','value']/100
+se_actual = uitw2[uitw2$Age=='lt20' & uitw2$variable=='Actual','SE']/100
+mu_rule = uitw2[uitw2$Age=='lt20' & uitw2$variable=='Rule-Based','value']/100
+se_rule = uitw2[uitw2$Age=='lt20' & uitw2$variable=='Rule-Based','SE']/100
+mu_bert = uitw2[uitw2$Age=='lt20' & uitw2$variable=='JoblessBERT','value']/100
+se_bert = uitw2[uitw2$Age=='lt20' & uitw2$variable=='JoblessBERT','SE']/100
+pnorm(as.numeric((mu_rule-mu_actual)/((se_rule+se_actual))),lower.tail=FALSE)
+pnorm(as.numeric((mu_bert-mu_actual)/((se_bert+se_actual))),lower.tail=FALSE)
 
+mu_actual = uitw2[uitw2$Age=='2030' & uitw2$variable=='Actual','value']/100
+se_actual = uitw2[uitw2$Age=='2030' & uitw2$variable=='Actual','SE']/100
+mu_rule = uitw2[uitw2$Age=='2030' & uitw2$variable=='Rule-Based','value']/100
+se_rule = uitw2[uitw2$Age=='2030' & uitw2$variable=='Rule-Based','SE']/100
+mu_bert = uitw2[uitw2$Age=='2030' & uitw2$variable=='JoblessBERT','value']/100
+se_bert = uitw2[uitw2$Age=='2030' & uitw2$variable=='JoblessBERT','SE']/100
+pnorm(as.numeric((mu_rule-mu_actual)/((se_rule+se_actual))),lower.tail=TRUE)
+pnorm(as.numeric((mu_bert-mu_actual)/((se_bert+se_actual))),lower.tail=TRUE)
+
+mu_actual = uitw2[uitw2$Age=='3040' & uitw2$variable=='Actual','value']/100
+se_actual = uitw2[uitw2$Age=='3040' & uitw2$variable=='Actual','SE']/100
+mu_rule = uitw2[uitw2$Age=='3040' & uitw2$variable=='Rule-Based','value']/100
+se_rule = uitw2[uitw2$Age=='3040' & uitw2$variable=='Rule-Based','SE']/100
+mu_bert = uitw2[uitw2$Age=='3040' & uitw2$variable=='JoblessBERT','value']/100
+se_bert = uitw2[uitw2$Age=='3040' & uitw2$variable=='JoblessBERT','SE']/100
+pnorm(as.numeric((mu_rule-mu_actual)/((se_rule+se_actual))),lower.tail=TRUE)
+pnorm(as.numeric((mu_bert-mu_actual)/((se_bert+se_actual))),lower.tail=TRUE)
+
+mu_actual = uitw2[uitw2$Age=='gt40' & uitw2$variable=='Actual','value']/100
+se_actual = uitw2[uitw2$Age=='gt40' & uitw2$variable=='Actual','SE']/100
+mu_rule = uitw2[uitw2$Age=='gt40' & uitw2$variable=='Rule-Based','value']/100
+se_rule = uitw2[uitw2$Age=='gt40' & uitw2$variable=='Rule-Based','SE']/100
+mu_bert = uitw2[uitw2$Age=='gt40' & uitw2$variable=='JoblessBERT','value']/100
+se_bert = uitw2[uitw2$Age=='gt40' & uitw2$variable=='JoblessBERT','SE']/100
+pnorm(as.numeric((mu_rule-mu_actual)/((se_rule+se_actual))),lower.tail=FALSE)
+pnorm(as.numeric((mu_bert-mu_actual)/((se_bert+se_actual))),lower.tail=FALSE)

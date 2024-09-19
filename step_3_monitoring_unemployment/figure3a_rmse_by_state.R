@@ -62,32 +62,5 @@ ggsave(
   dpi=1200
   )
 
-# Numbers and test statistics cited in main text
-
-mean_consensus = mean(
-  as.matrix(RMSE2_melt_wgt[RMSE2_melt_wgt$variable=='Autoregressive','rel_to_AR']),
-  na.rm=TRUE)
-mean_rule = mean(
-  as.matrix(RMSE2_melt_wgt[RMSE2_melt_wgt$variable=='Rule-Based','rel_to_AR']),
-  na.rm=TRUE)
-mean_bert = mean(
-  as.matrix(RMSE2_melt_wgt[RMSE2_melt_wgt$variable=='JoblessBERT','rel_to_AR']),
-  na.rm=TRUE)
-print((1-mean_bert/mean_consensus)*100)
-print((1-mean_rule/mean_consensus)*100)
-print((1-mean_bert/mean_rule)*100)
-print(RMSE2_melt_wgt[
-  RMSE2_melt_wgt$variable2=='JoblessBERT' 
-  & RMSE2_melt_wgt$State=='CA','rel_to_AR'])
-print(RMSE2_melt_wgt[
-  RMSE2_melt_wgt$variable2=='JoblessBERT' 
-  & RMSE2_melt_wgt$State=='VT','rel_to_AR'])
-# err_cf = as.matrix(forecasts[,'iclaimnsa'] - forecasts[,'forecast_regex'])
-# err_regex = as.matrix(forecasts[,'iclaimnsa'] - forecasts[,'forecast_consensus'])
-# err_bert990 = as.matrix(forecasts[,'iclaimnsa'] - forecasts[,'forecast_BERT'])
-# dm.test(err_cf,err_bert990,alternative='two.sided',h=1,power=1)
-# dm.test(err_cf,err_regex,alternative='two.sided',h=1,power=1)
-# dm.test(err_regex,err_bert990,alternative='two.sided',h=1,power=1)
-
 
 

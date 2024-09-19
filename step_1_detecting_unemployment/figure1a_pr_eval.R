@@ -1,6 +1,8 @@
 #####################################################
 # Plot precision recall curve
 
+# Precision-recall curve of rule-based model and JoblessBERT 
+# calculated using an evaluation sample of tweets
 d = as.data.frame(fread('figure1a_pr_eval.csv'))
 d = d[order(d[['p']]),]
 point_x = mean(d[d[['label']]==1,'is_unemployed_regex'],na.rm=TRUE)
@@ -46,10 +48,20 @@ ggsave(
   "figure1a_pr_eval.pdf",plot,
   width=15,height=15,units="cm",
   dpi=1200
-  )
+)
 
 ## Numbers cited in the main text
 
+# Precision-recall of rule-based model
+print(c(point_x,point_y))
+
+# Recall of JoblessBERT at the precision of rule-based model
+d[max(which((d[['p']]<=point_y) & (d$variable=='JoblessBERT'))),]
+
+# JoblessBERT maintains high precision when retrieving more than 90% of disclosures
+d[max(which((d[['p']]<=0.90) & (d$variable=='JoblessBERT'))),]
+
+# Test comparing rule vs JoblessBERT
 d = d[order(d[['p']]),]
 p = d[d$variable=='JoblessBERT','p']
 r = d[d$variable=='JoblessBERT','r']
@@ -61,28 +73,16 @@ rk = 0.238
 print(c(pb,rb))
 print((pk-pb)/pk)
 print((rb-rk)/rk)
-
-# This number should correspond to the classification threshold used to maximize the F1-score. 
 d = as.data.frame(fread('figure1a_pr_eval.csv'))
 d = d[order(d[['p']]),]
 threshold = d[which.max(f1),'is_unemployed_iter13']
 tw_regex = fread(paste0('../preprocessing/data/restricted/unemployed_tweets_regex.csv'))
-tw_regex = tw_regex[,c(
-  'user_id','tweet_timestamp','is_unemployed','tweet_text'
-  )]
-colnames(tw_regex) = c(
-  'user_id','tweet_timestamp','regex','tweet_text'
-  )
+tw_regex = tw_regex[,c('user_id','tweet_timestamp','is_unemployed','tweet_text')]
+colnames(tw_regex) = c('user_id','tweet_timestamp','regex','tweet_text')
 tw_bert = fread(paste0('../preprocessing/data/restricted/unemployed_tweets_bert.csv'))
-tw_bert = tw_bert[,c(
-  'user_id','tweet_timestamp','is_unemployed','tweet_text'
-  )]
-colnames(tw_bert) = c(
-  'user_id','tweet_timestamp','bert','tweet_text'
-  )
-tw = merge(
-  tw_bert,tw_regex,
-  by=c('user_id','tweet_timestamp','tweet_text'),all=TRUE)
+tw_bert = tw_bert[,c('user_id','tweet_timestamp','is_unemployed','tweet_text')]
+colnames(tw_bert) = c('user_id','tweet_timestamp','bert','tweet_text')
+tw = merge(tw_bert,tw_regex,by=c('user_id','tweet_timestamp','tweet_text'),all=TRUE)
 tw[is.na(tw$regex),'regex'] = 0
 tw[is.na(tw$bert),'bert'] = 0
 tw$bert = (tw$bert>=threshold)
@@ -97,11 +97,8 @@ print((sum(tw$lost_job + tw$laid_off + tw$layoff))/nrow(tw))
 tw$fire = grepl('fire',tw$tweet_text)
 tw$just = grepl('just',tw$tweet_text)
 tw$today = grepl('today',tw$tweet_text)
-print((sum(
-  tw$just + tw$today + tw$fire + tw$lost_job + tw$laid_off + tw$layoff
-  ))/nrow(tw))
+print((sum(tw$just + tw$today + tw$fire + tw$lost_job + tw$laid_off + tw$layoff))/nrow(tw))
 
-## Test comparing rule vs JoblessBERT
 precision = point_y
 recall = point_x
 total_positives = sum(tw_regex$regex)
@@ -147,6 +144,5 @@ contingency_table_bert = matrix(
     'Prediction' = c('Positive', 'Negative'),
     'Actual' = c('Positive', 'Negative')))
 chisq.test(contingency_table_bert,contingency_table_regex)
-
 
 

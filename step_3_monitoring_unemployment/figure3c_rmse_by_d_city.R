@@ -14,7 +14,7 @@ plotb = ggplot(
   geom_ribbon(aes(ymin=lb,ymax=ub,fill=variable,linetype=variable),alpha=0.1,linewidth=0.2) +
   labs(y = "", x = "Time After Measurement Week (d)", title = '') + 
   scale_y_continuous(expand=c(0,3),limits=c(30,110),breaks=seq(30,110,10)) +
-  scale_x_continuous(breaks=-9:5,limits=c(-9,5),expand=c(0,0.1)) +
+  scale_x_continuous(breaks=-10:5,limits=c(-10,5),expand=c(0,0.1)) +
   scale_linetype_manual(values=c('dotted','longdash','solid')) +
   scale_color_manual(values=c(
     'darkolivegreen3','#f98400','#3498db'
@@ -44,12 +44,4 @@ ggsave(
   width=18,height=12,units="cm",
   dpi=1200
 )
-# 
-# # Numbers cited in main text
-# 
-# print(dt[dt$h==0,])
-# print(1-dt[dt$h==0 & dt$variable=='Conversational BERT','value'] / dt[dt$h==0 & dt$variable=='Autoregressive','value'])
-# print(1-dt[dt$h==0 & dt$variable=='Conversational BERT','value'] / dt[dt$h==0 & dt$variable=='Rule-Based','value'])
-# print(1-dt[dt$h==0 & dt$variable=='Rule-Based','value'] / dt[dt$h==0 & dt$variable=='Autoregressive','value'])
-# print(dt[dt$h==4 & dt$variable=='Conversational BERT','value'])
-# 
+

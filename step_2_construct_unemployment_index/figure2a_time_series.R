@@ -22,197 +22,31 @@ dt0$time = as.numeric(1:nrow(dt0))
 
 ## Numbers cited in the main text 
 
-# RMSE during full evaluation period
-idx = (dt0$tm>=202001) & (dt0$tm<=202252)
-cor_regex_uw = round(cor(dt0[idx,c('regex_uw')],dt0[idx,c('iclaimnsa')]),2)
-cor_bert990_uw = round(cor(dt0[idx,c('bert990_uw')],dt0[idx,c('iclaimnsa')]),2)
-cor_regex_mrp = round(cor(dt0[idx,c('regex_mrp')],dt0[idx,c('iclaimnsa')]),2)
-cor_bert990_mrp = round(cor(dt0[idx,c('bert990_mrp')],dt0[idx,c('iclaimnsa')]),2)
-mu_ui = round(mean(dt0[idx,c('iclaimnsa')],na.rm=TRUE),2)
-sd_ui = round(sd(dt0[idx,c('iclaimnsa')],na.rm=TRUE),2)
-snr_ui = round(mu_ui / sd_ui,2)
-mu_regex_uw = round(mean(dt0[idx,c('regex_uw')],na.rm=TRUE),2)
-sd_regex_uw = round(sd(dt0[idx,c('regex_uw')],na.rm=TRUE),2)
-snr_regex_uw = round(mu_regex_uw / sd_regex_uw,2)
-mu_bert990_uw = round(mean(dt0[idx,c('bert990_uw')],na.rm=TRUE),2)
-sd_bert990_uw = round(sd(dt0[idx,c('bert990_uw')],na.rm=TRUE),2)
-snr_bert990_uw = round(mu_bert990_uw / sd_bert990_uw,2)
-mu_regex_mrp = round(mean(dt0[idx,c('regex_mrp')],na.rm=TRUE),2)
-sd_regex_mrp = round(sd(dt0[idx,c('regex_mrp')],na.rm=TRUE),2)
-snr_regex_mrp = round(mu_regex_mrp / sd_regex_mrp,2)
-mu_bert990_mrp = round(mean(dt0[idx,c('bert990_mrp')],na.rm=TRUE),2)
-sd_bert990_mrp = round(sd(dt0[idx,c('bert990_mrp')],na.rm=TRUE),2)
-snr_bert990_mrp = round(mu_bert990_mrp / sd_bert990_mrp,2)
-mae_regex_uw = round(mean(abs(dt0[idx,c('iclaimnsa')]-dt0[idx,c('regex_uw')]),na.rm=TRUE),2)
-mae_bert990_uw = round(mean(abs(dt0[idx,c('iclaimnsa')]-dt0[idx,c('bert990_uw')]),na.rm=TRUE),2)
-mae_regex_mrp = round(mean(abs(dt0[idx,c('iclaimnsa')]-dt0[idx,c('regex_mrp')]),na.rm=TRUE),2)
-mae_bert990_mrp = round(mean(abs(dt0[idx,c('iclaimnsa')]-dt0[idx,c('bert990_mrp')]),na.rm=TRUE),2)
-rmse_regex_uw = round(sqrt(mean(abs(dt0[idx,c('iclaimnsa')]-dt0[idx,c('regex_uw')])^2,na.rm=TRUE)),2)
-rmse_bert990_uw = round(sqrt(mean(abs(dt0[idx,c('iclaimnsa')]-dt0[idx,c('bert990_uw')])^2,na.rm=TRUE)),2)
-rmse_regex_mrp = round(sqrt(mean(abs(dt0[idx,c('iclaimnsa')]-dt0[idx,c('regex_mrp')])^2,na.rm=TRUE)),2)
-rmse_bert990_mrp = round(sqrt(mean(abs(dt0[idx,c('iclaimnsa')]-dt0[idx,c('bert990_mrp')])^2,na.rm=TRUE)),2)
-table_full = data.frame(Sample='Full Sample (2020 Week 1 - 2022 Week 52)',rbind(
-  c("Rule-Based (Unweighted)",cor_regex_uw,mu_regex_uw,sd_regex_uw,snr_regex_uw,mae_regex_uw),
-  c("JoblessBERT (Unweighted)",cor_bert990_uw,mu_bert990_uw,sd_bert990_uw,snr_bert990_uw,mae_bert990_uw),
-  c("Rule-Based (Post-Stratified)",cor_regex_mrp,mu_regex_mrp,sd_regex_mrp,snr_regex_mrp,mae_regex_mrp),
-  c("JoblessBERT (Post-Stratified)",cor_bert990_mrp,mu_bert990_mrp,sd_bert990_mrp,snr_bert990_mrp,mae_bert990_mrp),
-  c("Actual UI Claims",NA,mu_ui,sd_ui,snr_ui,NA) # ,
-))
-colnames(table_full) = c('Sample','Variable','Cor','mu','sigma','SNR','MAE')
-rmses_full = data.frame(Sample='Full Sample (2020 Week 1 - 2022 Week 52)',rbind(
-  c("Rule-Based (Unweighted)",rmse_regex_uw),
-  c("JoblessBERT (Unweighted)",rmse_bert990_uw),
-  c("Rule-Based (Post-Stratified)",rmse_regex_mrp),
-  c("JoblessBERT (Post-Stratified)",rmse_bert990_mrp)
-))
-colnames(rmses_full) = c('Sample','Variable','RMSE')
+# UI claims rose by 20 orders of magnitude 
+# after COVID-19 was declared a pandemic (on March 28, 2020) 
+# relative to actual claims recorded in January 2020. 
+print(dt0[dt0$tm==202013,'iclaimnsa'])
 
-idx = (dt0$tm>=201901) & (dt0$tm<=2020011)
-cor_regex_uw = round(cor(dt0[idx,c('regex_uw')],dt0[idx,c('iclaimnsa')]),2)
-cor_bert990_uw = round(cor(dt0[idx,c('bert990_uw')],dt0[idx,c('iclaimnsa')]),2)
-cor_regex_mrp = round(cor(dt0[idx,c('regex_mrp')],dt0[idx,c('iclaimnsa')]),2)
-cor_bert990_mrp = round(cor(dt0[idx,c('bert990_mrp')],dt0[idx,c('iclaimnsa')]),2)
-mu_ui = round(mean(dt0[idx,c('iclaimnsa')],na.rm=TRUE),2)
-sd_ui = round(sd(dt0[idx,c('iclaimnsa')],na.rm=TRUE),2)
-snr_ui = round(mu_ui / sd_ui,2)
-mu_regex_uw = round(mean(dt0[idx,c('regex_uw')],na.rm=TRUE),2)
-sd_regex_uw = round(sd(dt0[idx,c('regex_uw')],na.rm=TRUE),2)
-snr_regex_uw = round(mu_regex_uw / sd_regex_uw,2)
-mu_bert990_uw = round(mean(dt0[idx,c('bert990_uw')],na.rm=TRUE),2)
-sd_bert990_uw = round(sd(dt0[idx,c('bert990_uw')],na.rm=TRUE),2)
-snr_bert990_uw = round(mu_bert990_uw / sd_bert990_uw,2)
-mu_regex_mrp = round(mean(dt0[idx,c('regex_mrp')],na.rm=TRUE),2)
-sd_regex_mrp = round(sd(dt0[idx,c('regex_mrp')],na.rm=TRUE),2)
-snr_regex_mrp = round(mu_regex_mrp / sd_regex_mrp,2)
-mu_bert990_mrp = round(mean(dt0[idx,c('bert990_mrp')],na.rm=TRUE),2)
-sd_bert990_mrp = round(sd(dt0[idx,c('bert990_mrp')],na.rm=TRUE),2)
-snr_bert990_mrp = round(mu_bert990_mrp / sd_bert990_mrp,2)
-mae_regex_uw = round(mean(abs(dt0[idx,c('iclaimnsa')]-dt0[idx,c('regex_uw')]),na.rm=TRUE),2)
-mae_bert990_uw = round(mean(abs(dt0[idx,c('iclaimnsa')]-dt0[idx,c('bert990_uw')]),na.rm=TRUE),2)
-mae_regex_mrp = round(mean(abs(dt0[idx,c('iclaimnsa')]-dt0[idx,c('regex_mrp')]),na.rm=TRUE),2)
-mae_bert990_mrp = round(mean(abs(dt0[idx,c('iclaimnsa')]-dt0[idx,c('bert990_mrp')]),na.rm=TRUE),2)
-rmse_regex_uw = round(sqrt(mean(abs(dt0[idx,c('iclaimnsa')]-dt0[idx,c('regex_uw')])^2,na.rm=TRUE)),2)
-rmse_bert990_uw = round(sqrt(mean(abs(dt0[idx,c('iclaimnsa')]-dt0[idx,c('bert990_uw')])^2,na.rm=TRUE)),2)
-rmse_regex_mrp = round(sqrt(mean(abs(dt0[idx,c('iclaimnsa')]-dt0[idx,c('regex_mrp')])^2,na.rm=TRUE)),2)
-rmse_bert990_mrp = round(sqrt(mean(abs(dt0[idx,c('iclaimnsa')]-dt0[idx,c('bert990_mrp')])^2,na.rm=TRUE)),2)
-table_pre = data.frame(Sample='Pre-Covid (2019 Week 1 - 2020 Week 11)',rbind(
-  c("Rule-Based (Unweighted)",cor_regex_uw,mu_regex_uw,sd_regex_uw,snr_regex_uw,mae_regex_uw),
-  c("JoblessBERT (Unweighted)",cor_bert990_uw,mu_bert990_uw,sd_bert990_uw,snr_bert990_uw,mae_bert990_uw),
-  c("Rule-Based (Post-Stratified)",cor_regex_mrp,mu_regex_mrp,sd_regex_mrp,snr_regex_mrp,mae_regex_mrp),
-  c("JoblessBERT (Post-Stratified)",cor_bert990_mrp,mu_bert990_mrp,sd_bert990_mrp,snr_bert990_mrp,mae_bert990_mrp),
-  c("Actual UI Claims",NA,mu_ui,sd_ui,snr_ui,NA) # ,
-))
-colnames(table_pre) = c('Sample','Variable','Cor','mu','sigma','SNR','MAE')
-rmses_pre = data.frame(Sample='Pre-Covid (2019 Week 1 - 2020 Week 11)',rbind(
-  c("Rule-Based (Unweighted)",rmse_regex_uw),
-  c("JoblessBERT (Unweighted)",rmse_bert990_uw),
-  c("Rule-Based (Post-Stratified)",rmse_regex_mrp),
-  c("JoblessBERT (Post-Stratified)",rmse_bert990_mrp)
-))
-colnames(rmses_pre) = c('Sample','Variable','RMSE')
-
-idx = (dt0$tm>=202012) & (dt0$tm<=202022)
-cor_regex_uw = round(cor(dt0[idx,c('regex_uw')],dt0[idx,c('iclaimnsa')]),2)
-cor_bert990_uw = round(cor(dt0[idx,c('bert990_uw')],dt0[idx,c('iclaimnsa')]),2)
-cor_regex_mrp = round(cor(dt0[idx,c('regex_mrp')],dt0[idx,c('iclaimnsa')]),2)
-cor_bert990_mrp = round(cor(dt0[idx,c('bert990_mrp')],dt0[idx,c('iclaimnsa')]),2)
-mu_ui = round(mean(dt0[idx,c('iclaimnsa')],na.rm=TRUE),2)
-sd_ui = round(sd(dt0[idx,c('iclaimnsa')],na.rm=TRUE),2)
-snr_ui = round(mu_ui / sd_ui,2)
-mu_regex_uw = round(mean(dt0[idx,c('regex_uw')],na.rm=TRUE),2)
-sd_regex_uw = round(sd(dt0[idx,c('regex_uw')],na.rm=TRUE),2)
-snr_regex_uw = round(mu_regex_uw / sd_regex_uw,2)
-mu_bert990_uw = round(mean(dt0[idx,c('bert990_uw')],na.rm=TRUE),2)
-sd_bert990_uw = round(sd(dt0[idx,c('bert990_uw')],na.rm=TRUE),2)
-snr_bert990_uw = round(mu_bert990_uw / sd_bert990_uw,2)
-mu_regex_mrp = round(mean(dt0[idx,c('regex_mrp')],na.rm=TRUE),2)
-sd_regex_mrp = round(sd(dt0[idx,c('regex_mrp')],na.rm=TRUE),2)
-snr_regex_mrp = round(mu_regex_mrp / sd_regex_mrp,2)
-mu_bert990_mrp = round(mean(dt0[idx,c('bert990_mrp')],na.rm=TRUE),2)
-sd_bert990_mrp = round(sd(dt0[idx,c('bert990_mrp')],na.rm=TRUE),2)
-snr_bert990_mrp = round(mu_bert990_mrp / sd_bert990_mrp,2)
-mae_regex_uw = round(mean(abs(dt0[idx,c('iclaimnsa')]-dt0[idx,c('regex_uw')]),na.rm=TRUE),2)
-mae_bert990_uw = round(mean(abs(dt0[idx,c('iclaimnsa')]-dt0[idx,c('bert990_uw')]),na.rm=TRUE),2)
-mae_regex_mrp = round(mean(abs(dt0[idx,c('iclaimnsa')]-dt0[idx,c('regex_mrp')]),na.rm=TRUE),2)
-mae_bert990_mrp = round(mean(abs(dt0[idx,c('iclaimnsa')]-dt0[idx,c('bert990_mrp')]),na.rm=TRUE),2)
-rmse_regex_uw = round(sqrt(mean(abs(dt0[idx,c('iclaimnsa')]-dt0[idx,c('regex_uw')])^2,na.rm=TRUE)),2)
-rmse_bert990_uw = round(sqrt(mean(abs(dt0[idx,c('iclaimnsa')]-dt0[idx,c('bert990_uw')])^2,na.rm=TRUE)),2)
-rmse_regex_mrp = round(sqrt(mean(abs(dt0[idx,c('iclaimnsa')]-dt0[idx,c('regex_mrp')])^2,na.rm=TRUE)),2)
-rmse_bert990_mrp = round(sqrt(mean(abs(dt0[idx,c('iclaimnsa')]-dt0[idx,c('bert990_mrp')])^2,na.rm=TRUE)),2)
-table_covid = data.frame(Sample='Covid (2020 Week 12 - 2021 Week 26)',rbind(
-  c("Rule-Based (Unweighted)",cor_regex_uw,mu_regex_uw,sd_regex_uw,snr_regex_uw,mae_regex_uw),
-  c("JoblessBERT (Unweighted)",cor_bert990_uw,mu_bert990_uw,sd_bert990_uw,snr_bert990_uw,mae_bert990_uw),
-  c("Rule-Based (Post-Stratified)",cor_regex_mrp,mu_regex_mrp,sd_regex_mrp,snr_regex_mrp,mae_regex_mrp),
-  c("JoblessBERT (Post-Stratified)",cor_bert990_mrp,mu_bert990_mrp,sd_bert990_mrp,snr_bert990_mrp,mae_bert990_mrp),
-  c("Actual UI Claims",NA,mu_ui,sd_ui,snr_ui,NA) # ,
-))
-colnames(table_covid) = c('Sample','Variable','Cor','mu','sigma','SNR','MAE')
-rmses_covid = data.frame(Sample='Covid (2020 Week 12 - 2021 Week 26)',rbind(
-  c("Rule-Based (Unweighted)",rmse_regex_uw),
-  c("JoblessBERT (Unweighted)",rmse_bert990_uw),
-  c("Rule-Based (Post-Stratified)",rmse_regex_mrp),
-  c("JoblessBERT (Post-Stratified)",rmse_bert990_mrp)
-))
-colnames(rmses_covid) = c('Sample','Variable','RMSE')
-pop = 164704 #  Civilian Labor Force Level (CLF16OV)	Dec 2019
-
-idx = (dt0$tm>=202023) & (dt0$tm<=202252)
-cor_regex_uw = round(cor(dt0[idx,c('regex_uw')],dt0[idx,c('iclaimnsa')]),2)
-cor_bert990_uw = round(cor(dt0[idx,c('bert990_uw')],dt0[idx,c('iclaimnsa')]),2)
-cor_regex_mrp = round(cor(dt0[idx,c('regex_mrp')],dt0[idx,c('iclaimnsa')]),2)
-cor_bert990_mrp = round(cor(dt0[idx,c('bert990_mrp')],dt0[idx,c('iclaimnsa')]),2)
-mu_ui = round(mean(dt0[idx,c('iclaimnsa')],na.rm=TRUE),2)
-sd_ui = round(sd(dt0[idx,c('iclaimnsa')],na.rm=TRUE),2)
-snr_ui = round(mu_ui / sd_ui,2)
-mu_regex_uw = round(mean(dt0[idx,c('regex_uw')],na.rm=TRUE),2)
-sd_regex_uw = round(sd(dt0[idx,c('regex_uw')],na.rm=TRUE),2)
-snr_regex_uw = round(mu_regex_uw / sd_regex_uw,2)
-mu_bert990_uw = round(mean(dt0[idx,c('bert990_uw')],na.rm=TRUE),2)
-sd_bert990_uw = round(sd(dt0[idx,c('bert990_uw')],na.rm=TRUE),2)
-snr_bert990_uw = round(mu_bert990_uw / sd_bert990_uw,2)
-mu_regex_mrp = round(mean(dt0[idx,c('regex_mrp')],na.rm=TRUE),2)
-sd_regex_mrp = round(sd(dt0[idx,c('regex_mrp')],na.rm=TRUE),2)
-snr_regex_mrp = round(mu_regex_mrp / sd_regex_mrp,2)
-mu_bert990_mrp = round(mean(dt0[idx,c('bert990_mrp')],na.rm=TRUE),2)
-sd_bert990_mrp = round(sd(dt0[idx,c('bert990_mrp')],na.rm=TRUE),2)
-snr_bert990_mrp = round(mu_bert990_mrp / sd_bert990_mrp,2)
-mae_regex_uw = round(mean(abs(dt0[idx,c('iclaimnsa')]-dt0[idx,c('regex_uw')]),na.rm=TRUE),2)
-mae_bert990_uw = round(mean(abs(dt0[idx,c('iclaimnsa')]-dt0[idx,c('bert990_uw')]),na.rm=TRUE),2)
-mae_regex_mrp = round(mean(abs(dt0[idx,c('iclaimnsa')]-dt0[idx,c('regex_mrp')]),na.rm=TRUE),2)
-mae_bert990_mrp = round(mean(abs(dt0[idx,c('iclaimnsa')]-dt0[idx,c('bert990_mrp')]),na.rm=TRUE),2)
-rmse_regex_uw = round(sqrt(mean(abs(dt0[idx,c('iclaimnsa')]-dt0[idx,c('regex_uw')])^2,na.rm=TRUE)),2)
-rmse_bert990_uw = round(sqrt(mean(abs(dt0[idx,c('iclaimnsa')]-dt0[idx,c('bert990_uw')])^2,na.rm=TRUE)),2)
-rmse_regex_mrp = round(sqrt(mean(abs(dt0[idx,c('iclaimnsa')]-dt0[idx,c('regex_mrp')])^2,na.rm=TRUE)),2)
-rmse_bert990_mrp = round(sqrt(mean(abs(dt0[idx,c('iclaimnsa')]-dt0[idx,c('bert990_mrp')])^2,na.rm=TRUE)),2)
-table_post = data.frame(Sample='Post-Covid (2021 Week 27 - 2022 Week 52)',rbind(
-  c("Rule-Based (Unweighted)",cor_regex_uw,mu_regex_uw,sd_regex_uw,snr_regex_uw,mae_regex_uw),
-  c("JoblessBERT (Unweighted)",cor_bert990_uw,mu_bert990_uw,sd_bert990_uw,snr_bert990_uw,mae_bert990_uw),
-  c("Rule-Based (Post-Stratified)",cor_regex_mrp,mu_regex_mrp,sd_regex_mrp,snr_regex_mrp,mae_regex_mrp),
-  c("JoblessBERT (Post-Stratified)",cor_bert990_mrp,mu_bert990_mrp,sd_bert990_mrp,snr_bert990_mrp,mae_bert990_mrp),
-  c("Actual UI Claims",NA,mu_ui,sd_ui,snr_ui,NA) # ,
-))
-colnames(table_post) = c('Sample','Variable','Cor','mu','sigma','SNR','MAE')
-rmses_post = data.frame(Sample='Post-Covid (2021 Week 27 - 2022 Week 52)',rbind(
-  c("Rule-Based (Unweighted)",rmse_regex_uw),
-  c("JoblessBERT (Unweighted)",rmse_bert990_uw),
-  c("Rule-Based (Post-Stratified)",rmse_regex_mrp),
-  c("JoblessBERT (Post-Stratified)",rmse_bert990_mrp)
-))
-colnames(rmses_post) = c('Sample','Variable','RMSE')
-rmses = rbind(rmses_full,rmses_pre,rmses_covid,rmses_post)
-print(rmses)
-
-idx = (dt0$tm>=202001) & (dt0$tm<=202252)
+# unweighted indices underestimate changes in UI claims
+# particularly at volatile months of the pandemic
+# while the post-stratified indices are significantly closer to actual UI claims
+idx = (dt0$tm>202012) & (dt0$tm<=202252)
 err_regex_uw = dt0[idx,c('iclaimnsa')]-dt0[idx,c('regex_uw')]
 err_bert990_uw = dt0[idx,c('iclaimnsa')]-dt0[idx,c('bert990_uw')]
 err_regex_mrp = dt0[idx,c('iclaimnsa')]-dt0[idx,c('regex_mrp')]
 err_bert990_mrp = dt0[idx,c('iclaimnsa')]-dt0[idx,c('bert990_mrp')]
 dm.test(err_regex_uw,err_bert990_uw,alternative='two.sided',h=1,power=1)
+dm.test(err_regex_mrp,err_bert990_mrp,alternative='two.sided',h=1,power=1)
+
+# RMSE of JoblessBERT relative UI claims lower than rule-based indices
+# with the post-stratified JoblessBERT index significantly outperforming all others
+dm.test(err_regex_uw,err_bert990_uw,alternative='two.sided',h=1,power=1)
 dm.test(err_regex_uw,err_bert990_mrp,alternative='two.sided',h=1,power=1)
 dm.test(err_regex_mrp,err_bert990_mrp,alternative='two.sided',h=1,power=1)
 dm.test(err_bert990_uw,err_bert990_mrp,alternative='two.sided',h=1,power=1)
-print(length(err_regex_uw)-1)
 
+# At the height of the pandemic (March to June 2020)
+# post-stratified rule-based under-estimates UI claims more than post-stratified JoblessBERT
 idx = (dt0$tm>=202015) & (dt0$tm<=202026)
 err_regex_uw = dt0[idx,c('iclaimnsa')]-dt0[idx,c('regex_uw')]
 err_bert990_uw = dt0[idx,c('iclaimnsa')]-dt0[idx,c('bert990_uw')]
@@ -220,15 +54,19 @@ err_regex_mrp = dt0[idx,c('iclaimnsa')]-dt0[idx,c('regex_mrp')]
 err_bert990_mrp = dt0[idx,c('iclaimnsa')]-dt0[idx,c('bert990_mrp')]
 dm.test(err_regex_uw,err_bert990_uw,alternative='two.sided',h=1,power=1)
 dm.test(err_regex_mrp,err_bert990_mrp,alternative='two.sided',h=1,power=1)
-sqrt(mean((err_regex_mrp)^2,na.rm=TRUE))
-sqrt(mean((err_bert990_mrp)^2,na.rm=TRUE))
-sqrt(mean((err_regex_mrp)^2,na.rm=TRUE))/sqrt(mean((err_bert990_mrp)^2,na.rm=TRUE))-1
-print(length(err_regex_uw)-1)
+RMSE_rule = sqrt(mean((err_regex_mrp)^2,na.rm=TRUE))
+RMSE_bert990 = sqrt(mean((err_bert990_mrp)^2,na.rm=TRUE))
+print(c(RMSE_rule,RMSE_bert990,RMSE_rule/RMSE_bert990-1))
+
+# which translates to underestimation of UI claims during this period
+pop = 164704 #  Civilian Labor Force Level (CLF16OV)	Dec 2019
 print(
   mean(dt0[idx,c('iclaimnsa_raw')],na.rm=TRUE) 
   * (mean(dt0[idx,c('regex_mrp')],na.rm=TRUE) 
      / mean(dt0[idx,c('bert990_mrp')],na.rm=TRUE))*pop)
 
+# On an average week during the more stable times after June 2020
+# differences between post-stratified rule-based and JoblessBERT indices are smaller
 idx = (dt0$tm>202026) & (dt0$tm<=202252)
 err_regex_uw = dt0[idx,c('iclaimnsa')]-dt0[idx,c('regex_uw')]
 err_bert990_uw = dt0[idx,c('iclaimnsa')]-dt0[idx,c('bert990_uw')]
@@ -236,18 +74,15 @@ err_regex_mrp = dt0[idx,c('iclaimnsa')]-dt0[idx,c('regex_mrp')]
 err_bert990_mrp = dt0[idx,c('iclaimnsa')]-dt0[idx,c('bert990_mrp')]
 dm.test(err_regex_uw,err_bert990_uw,alternative='two.sided',h=1,power=1)
 dm.test(err_regex_mrp,err_bert990_mrp,alternative='two.sided',h=1,power=1)
-sqrt(mean((err_regex_mrp)^2,na.rm=TRUE))
-sqrt(mean((err_bert990_mrp)^2,na.rm=TRUE))
-sqrt(mean((err_regex_mrp)^2,na.rm=TRUE))/sqrt(mean((err_bert990_mrp)^2,na.rm=TRUE))-1
-print(length(err_regex_uw)-1)
+RMSE_rule = sqrt(mean((err_regex_mrp)^2,na.rm=TRUE))
+RMSE_bert990 = sqrt(mean((err_bert990_mrp)^2,na.rm=TRUE))
+print(c(RMSE_rule,RMSE_bert990,RMSE_rule/RMSE_bert990-1))
+
+# which translates to underestimation of UI claims during this period
 print(
   mean(dt0[idx,c('iclaimnsa_raw')],na.rm=TRUE) 
   * (mean(dt0[idx,c('regex_mrp')],na.rm=TRUE) 
-     / mean(dt0[idx,c('bert990_mrp')],na.rm=TRUE))*pop
-)
-
-print(dt0[dt0$tm==202013,'iclaimnsa']/dt0[dt0$tm==202011,'iclaimnsa'])
-print(dt0[dt0$tm==202013,'iclaimnsa'])
+     / mean(dt0[idx,c('bert990_mrp')],na.rm=TRUE))*pop)
 
 ##########################
 # Plot Time Series
