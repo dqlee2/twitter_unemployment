@@ -91,7 +91,7 @@ To reproduce the results in the paper:
 
 ## Software Requirements
 
-The code in this repository has been written and tested using R 4.3.2. The full session information has been listed below:
+The code in this repository has been written and tested using R 4.3.2. The full session information has been listed below. Allow for about 5 minutes to install the packages. The expected runtime for executing all the replication steps is about 20 hours. 
 ```
 R version 4.3.2 (2023-10-31 ucrt)
 Platform: x86_64-w64-mingw32/x64 (64-bit)
