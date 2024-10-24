@@ -91,4 +91,37 @@ To reproduce the results in the paper:
 
 ## Software Requirements
 
-The code in this repository has been written and tested using R 4.3.2. 
+The code in this repository has been written and tested using R 4.3.2. The full session information has been listed below:
+```
+R version 4.3.2 (2023-10-31 ucrt)
+Platform: x86_64-w64-mingw32/x64 (64-bit)
+Running under: Windows 11 x64 (build 22000)
+
+Matrix products: default
+
+
+locale:
+[1] LC_COLLATE=English_United States.utf8  LC_CTYPE=English_United States.utf8    LC_MONETARY=English_United States.utf8 LC_NUMERIC=C                          
+[5] LC_TIME=English_United States.utf8    
+
+time zone: America/New_York
+tzcode source: internal
+
+attached base packages:
+[1] stats     graphics  grDevices utils     datasets  methods   base     
+
+other attached packages:
+ [1] forecast_8.22.0   ggsignif_0.6.4    ggrepel_0.9.4     speedglm_0.3-5    biglm_0.9-2.1     DBI_1.1.3         MASS_7.3-60       glmnet_4.1-8     
+ [9] Matrix_1.6-1.1    plm_2.6-3         readxl_1.4.3      data.table_1.14.8 zoo_1.8-12        lubridate_1.9.3   forcats_1.0.0     stringr_1.5.0    
+[17] dplyr_1.1.3       purrr_1.0.2       readr_2.1.4       tidyr_1.3.0       tibble_3.2.1      ggplot2_3.4.4     tidyverse_2.0.0  
+
+loaded via a namespace (and not attached):
+ [1] gtable_0.3.4      shape_1.4.6       collapse_2.0.3    lattice_0.21-9    tzdb_0.4.0        quadprog_1.5-8    vctrs_0.6.4       tools_4.3.2      
+ [9] Rdpack_2.6        generics_0.1.3    curl_5.1.0        parallel_4.3.2    sandwich_3.0-2    fansi_1.0.5       xts_0.14.0        pkgconfig_2.0.3  
+[17] lifecycle_1.0.4   compiler_4.3.2    maxLik_1.5-2      munsell_0.5.0     codetools_0.2-19  Formula_1.2-5     pillar_1.9.0      iterators_1.0.14 
+[25] foreach_1.5.2     nlme_3.1-163      fracdiff_1.5-3    tidyselect_1.2.0  bdsmatrix_1.3-6   digest_0.6.33     stringi_1.7.12    tseries_0.10-56  
+[33] splines_4.3.2     miscTools_0.6-28  grid_4.3.2        colorspace_2.1-0  cli_3.6.1         magrittr_2.0.3    survival_3.5-7    utf8_1.2.4       
+[41] withr_2.5.2       scales_1.2.1      timechange_0.2.0  TTR_0.24.4        quantmod_0.4.26   nnet_7.3-19       timeDate_4032.109 cellranger_1.1.0 
+[49] hms_1.1.3         urca_1.3-4        rbibutils_2.2.16  lmtest_0.9-40     rlang_1.1.2       Rcpp_1.0.11       glue_1.6.2        rstudioapi_0.15.0
+[57] R6_2.5.1
+```
